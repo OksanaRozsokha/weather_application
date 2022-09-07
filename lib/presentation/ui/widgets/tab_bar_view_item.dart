@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:weather_application/common/extensions/string_extension.dart';
 import 'package:weather_application/common/utils/dates_operations.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/weather_forecast_list.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/hourly_weather_forecast_list_for_single_day.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/weather_forecast_list.dart';
 import 'package:weather_application/settings.dart';
 
 class TabBarViewItem extends StatelessWidget {
-  final List<WeatherForecast> weatherForecastList;
-  const TabBarViewItem({Key? key, required this.weatherForecastList})
+  final SingleDayWeatherForecastList singleDayweatherForecastList;
+  const TabBarViewItem({Key? key, required this.singleDayweatherForecastList})
       : super(key: key);
 
   @override
@@ -25,9 +26,10 @@ class TabBarViewItem extends StatelessWidget {
 
   Widget _buildMainView() {
     WeatherForecast afternoonOrFirstWeatherForecastItem =
-        weatherForecastList.firstWhere(
+        singleDayweatherForecastList.hourlyWeatherForecastList.firstWhere(
             (element) => element.dtTxt!.substring(10, 16).trim() == '12:00',
-            orElse: () => weatherForecastList[0]);
+            orElse: () =>
+                singleDayweatherForecastList.hourlyWeatherForecastList[0]);
 
     DateTime weatherForecastDate =
         DateTime.parse(afternoonOrFirstWeatherForecastItem.dtTxt!);
@@ -119,7 +121,8 @@ class TabBarViewItem extends StatelessWidget {
           shrinkWrap: true,
           scrollDirection: Axis.horizontal,
           itemBuilder: (BuildContext context, int index) {
-            WeatherForecast weatherForecastItem = weatherForecastList[index];
+            WeatherForecast weatherForecastItem =
+                singleDayweatherForecastList.hourlyWeatherForecastList[index];
 
             return Center(
               child: Container(
@@ -191,7 +194,8 @@ class TabBarViewItem extends StatelessWidget {
               ),
             );
           },
-          itemCount: weatherForecastList.length),
+          itemCount:
+              singleDayweatherForecastList.hourlyWeatherForecastList.length),
     );
   }
 

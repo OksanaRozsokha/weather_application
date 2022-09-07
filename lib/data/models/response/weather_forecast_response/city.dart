@@ -1,4 +1,4 @@
-import 'package:weather_application/data/models/response/weather_forecst_response/coordinates.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/coordinates.dart';
 
 class City {
   int id;
@@ -29,17 +29,6 @@ class City {
       timezone: json['timezone'],
       sunrise: json['sunrise'],
       sunset: json['sunset']);
-
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'name': name,
-        'coord': coord.toJson(),
-        'country': country,
-        'population': population,
-        'timezone': timezone,
-        'sunrise': sunrise,
-        'sunset': sunset
-      };
 
   @override
   bool operator ==(covariant City other) {

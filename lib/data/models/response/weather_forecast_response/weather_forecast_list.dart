@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-
-import 'package:weather_application/data/models/response/weather_forecst_response/clouds.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/main_indicators.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/sys.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/weather.dart';
-
-import 'wind.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/clouds.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/main_indicators.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/sys.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/weather.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/wind.dart';
 
 class WeatherForecast {
   int dt;
@@ -43,19 +41,6 @@ class WeatherForecast {
           pop: json['pop'].toDouble(),
           sys: Sys.fromJson(json['sys']),
           dtTxt: json['dt_txt']);
-
-  Map<String, dynamic> toJson() => {
-        'dt': dt,
-        'main': mainIndicators.toJson(),
-        'weather':
-            weather.map((weatherElement) => weatherElement.toJson()).toList(),
-        'clouds': clouds.toJson(),
-        'wind': wind.toJson(),
-        'visibility': visibility,
-        'pop': pop,
-        'sys': sys.toJson(),
-        'dt_txt': dtTxt
-      };
 
   @override
   bool operator ==(covariant WeatherForecast other) {

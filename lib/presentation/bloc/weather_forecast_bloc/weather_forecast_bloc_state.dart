@@ -8,9 +8,9 @@ class WeatherForecastBlocInitialState extends WeatherForecastBlocState {}
 class WeatherForecastLoadingState extends WeatherForecastBlocState {}
 
 class WeatherForecastLoadedState extends WeatherForecastBlocState {
-  final WeatherForecastResponse sortedWeatherForecastResponse;
+  final WeatherForecastResponse weatherForecastResponse;
 
-  WeatherForecastLoadedState({required this.sortedWeatherForecastResponse});
+  WeatherForecastLoadedState({required this.weatherForecastResponse});
 }
 
 class WeatherForecastCityNotFoundErrorState extends WeatherForecastBlocState {

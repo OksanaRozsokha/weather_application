@@ -3,7 +3,7 @@ import 'package:meta/meta.dart';
 import 'package:weather_application/common/errors/city_not_found_error.dart';
 import 'package:weather_application/common/errors/incorrect_location_coordinates.dart';
 import 'package:weather_application/data/models/request/getWeatherForecastRequest.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/weather_forecast_response.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/weather_forecast_response.dart';
 import 'package:weather_application/domain/contracts/weather_forecast_repository_interface.dart';
 
 part 'weather_forecast_bloc_event.dart';
@@ -30,7 +30,7 @@ class WeatherForecastBloc
                 request: weatherForecastRequest);
 
         emit(WeatherForecastLoadedState(
-            sortedWeatherForecastResponse: weatherForecastResponse));
+            weatherForecastResponse: weatherForecastResponse));
       } catch (error) {
         switch (error.runtimeType) {
           case IncorrectLocationCoordinatesError:

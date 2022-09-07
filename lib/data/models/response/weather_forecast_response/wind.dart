@@ -10,8 +10,6 @@ class Wind {
       deg: json['deg'],
       gust: json['gust'].toDouble());
 
-  Map<String, dynamic> toJson() => {'speed': speed, 'deg': deg, 'gust': gust};
-
   @override
   bool operator ==(covariant Wind other) {
     if (identical(this, other)) return true;

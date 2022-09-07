@@ -4,9 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network_image_mock/network_image_mock.dart';
-import 'package:weather_application/data/models/response/sorted_weather_forecast_response.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/weather_forecast_response.dart';
-import 'package:weather_application/data/repositories/weather_forecast_repository.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/weather_forecast_response.dart';
 import 'package:weather_application/presentation/bloc/location_cubit/location_cubit.dart';
 import 'package:weather_application/presentation/bloc/weather_forecast_bloc/weather_forecast_bloc.dart';
 import 'package:weather_application/presentation/ui/widgets/weather_forecast_content_widget.dart';
@@ -44,12 +42,7 @@ void main() {
       testWidgets('render content on success', (WidgetTester tester) async {
         when(() => weatherForecastBloc.state).thenReturn(
             WeatherForecastLoadedState(
-                sortedWeatherForecastResponse:
-                    SortedWeatherForecastResponse.create(
-                        sortedList: WeatherForecastRepository
-                            .sortWeatherForecastListByDate(
-                                weatherForecastResponse.weatherForecastList),
-                        weatherForecastResponse: weatherForecastResponse)));
+                weatherForecastResponse: weatherForecastResponse));
 
         await mockNetworkImagesFor(() => tester.pumpWidget(
                 testWidget(blocsList: <BlocProvider<BlocBase<Object?>>>[

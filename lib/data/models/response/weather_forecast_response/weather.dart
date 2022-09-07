@@ -16,9 +16,6 @@ class Weather {
       description: json['description'],
       icon: json['icon']);
 
-  Map<String, dynamic> toJson() =>
-      {'id': id, 'main': main, 'description': description, 'icon': icon};
-
   @override
   bool operator ==(covariant Weather other) {
     if (identical(this, other)) return true;

@@ -5,7 +5,7 @@ import 'package:mockito/mockito.dart';
 import 'package:weather_application/common/errors/city_not_found_error.dart';
 import 'package:weather_application/common/errors/incorrect_location_coordinates.dart';
 import 'package:weather_application/common/errors/request_error.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/weather_forecast_response.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/weather_forecast_response.dart';
 import 'package:weather_application/domain/contracts/weather_forecast_repository_interface.dart';
 import 'package:weather_application/presentation/bloc/weather_forecast_bloc/weather_forecast_bloc.dart';
 

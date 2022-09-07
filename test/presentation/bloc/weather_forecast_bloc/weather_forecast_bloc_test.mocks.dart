@@ -8,7 +8,7 @@ import 'dart:async' as _i4;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:weather_application/data/models/request/getWeatherForecastRequest.dart'
     as _i5;
-import 'package:weather_application/data/models/response/weather_forecst_response/weather_forecast_response.dart'
+import 'package:weather_application/data/models/response/weather_forecast_response/weather_forecast_response.dart'
     as _i2;
 import 'package:weather_application/domain/contracts/weather_forecast_repository_interface.dart'
     as _i3;

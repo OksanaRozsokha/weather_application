@@ -31,18 +31,6 @@ class MainIndicators {
       humidity: json['humidity'],
       tempKf: json['temp_kf'].toDouble());
 
-  Map<String, dynamic> toJson() => {
-        'temp': temp,
-        'feels_like': feelsLike,
-        'temp_min': tempMin,
-        'temp_max': tempMax,
-        'pressure': pressure,
-        'sea_level': seaLevel,
-        'grnd_level': grndLevel,
-        'humidity': humidity,
-        'temp_kf': tempKf
-      };
-
   @override
   bool operator ==(covariant MainIndicators other) {
     if (identical(this, other)) return true;

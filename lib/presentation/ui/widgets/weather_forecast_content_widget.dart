@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_application/data/models/response/sorted_weather_forecast_response.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/weather_forecast_list.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/weather_forecast_response.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/hourly_weather_forecast_list_for_single_day.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/weather_forecast_response.dart';
 import 'package:weather_application/presentation/bloc/location_cubit/location_cubit.dart';
 import 'package:weather_application/presentation/bloc/weather_forecast_bloc/weather_forecast_bloc.dart';
 import 'package:weather_application/presentation/ui/widgets/tab.dart';
@@ -60,7 +59,7 @@ class WeatherForecastContentWidget extends StatelessWidget {
 
         if (state is WeatherForecastLoadedState) {
           return _buildWeatherForecastContent(
-              weatherForecastResponse: state.sortedWeatherForecastResponse,
+              weatherForecastResponse: state.weatherForecastResponse,
               context: context);
         }
 
@@ -84,10 +83,8 @@ class WeatherForecastContentWidget extends StatelessWidget {
   Widget _buildWeatherForecastContent(
       {required WeatherForecastResponse weatherForecastResponse,
       required BuildContext context}) {
-    SortedWeatherForecastResponse sortedWeatherForecastResponse =
-        weatherForecastResponse as SortedWeatherForecastResponse;
     return DefaultTabController(
-      length: sortedWeatherForecastResponse.sortedWeatherForecastList.length,
+      length: weatherForecastResponse.dailyWeatherForecastList.length,
       child: Center(
         child: Padding(
           padding: const EdgeInsets.only(top: 35.0),
@@ -98,7 +95,7 @@ class WeatherForecastContentWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
-                'Weather in ${sortedWeatherForecastResponse.city.name}, ${sortedWeatherForecastResponse.city.country}',
+                'Weather in ${weatherForecastResponse.city.name}, ${weatherForecastResponse.city.country}',
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   fontSize: 30,
@@ -110,14 +107,14 @@ class WeatherForecastContentWidget extends StatelessWidget {
               ),
               _buildTabBar(
                   dailyWeatherForecastList:
-                      sortedWeatherForecastResponse.sortedWeatherForecastList,
+                      weatherForecastResponse.dailyWeatherForecastList,
                   context: context),
               const SizedBox(
                 height: 15,
               ),
               _buildTabBarView(
                   dailyWeatherForecastList:
-                      sortedWeatherForecastResponse.sortedWeatherForecastList),
+                      weatherForecastResponse.dailyWeatherForecastList),
             ],
           ),
         ),
@@ -132,7 +129,7 @@ class WeatherForecastContentWidget extends StatelessWidget {
   }
 
   Widget _buildTabBar(
-      {required List<List<WeatherForecast>> dailyWeatherForecastList,
+      {required List<SingleDayWeatherForecastList> dailyWeatherForecastList,
       required BuildContext context}) {
     return Container(
       constraints: BoxConstraints(
@@ -151,22 +148,29 @@ class WeatherForecastContentWidget extends StatelessWidget {
           unselectedLabelColor: Colors.black,
           labelStyle: const TextStyle(fontWeight: FontWeight.bold),
           tabs: dailyWeatherForecastList
-              .map((List<WeatherForecast> oneDayWeatherForecastList) =>
-                  TabWidget(weatherForecastList: oneDayWeatherForecastList))
+              .map(
+                  (SingleDayWeatherForecastList singleDayWeatherForecastList) =>
+                      TabWidget(
+                        singleDayweatherForecastList:
+                            singleDayWeatherForecastList,
+                      ))
               .toList()),
     );
   }
 
   Widget _buildTabBarView(
-      {required List<List<WeatherForecast>> dailyWeatherForecastList}) {
+      {required List<SingleDayWeatherForecastList> dailyWeatherForecastList}) {
     return SizedBox(
       width: 700,
       height: 700,
       child: TabBarView(
           physics: const NeverScrollableScrollPhysics(),
           children: dailyWeatherForecastList
-              .map((List<WeatherForecast> weatherForecastList) =>
-                  TabBarViewItem(weatherForecastList: weatherForecastList))
+              .map(
+                  (SingleDayWeatherForecastList singleDayweatherForecastList) =>
+                      TabBarViewItem(
+                          singleDayweatherForecastList:
+                              singleDayweatherForecastList))
               .toList()),
     );
   }

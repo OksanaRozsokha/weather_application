@@ -7,7 +7,7 @@ import 'package:weather_application/common/errors/request_error.dart';
 import 'package:weather_application/data/api/api_config.dart';
 import 'package:weather_application/data/api/api_handler.dart';
 import 'package:weather_application/data/models/request/getWeatherForecastRequest.dart';
-import 'package:weather_application/data/models/response/weather_forecst_response/weather_forecast_response.dart';
+import 'package:weather_application/data/models/response/weather_forecast_response/weather_forecast_response.dart';
 import 'package:weather_application/data/repositories/weather_forecast_repository.dart';
 
 import '../api/test_response_json.dart';
